@@ -83,3 +83,10 @@ ElementType.PACKAGE 作用于包
 @requestParam：获取参数，类似于request.getparamter();
 
 @Component：将一个bean交给spring管理
+
+#### 30.订单表  包含 用户id，商户id，每天3000W交易量，如何进行分表，使得根据 用户id ，商户id查询速度都很快?
+
+答案1：根据 用户id 进行哈希算法再取模后的值 进行分表存储(会自动根据取模的值去匹配表名, 定位到哪张表)  
+       然后再根据 商户id 进行哈希算法再取模后的值 进行分表存储(会自动根据取模的值去匹配表名, 定位到哪张表)  
+       每次去查询时 会根据用户id  或者商户id  哈希算法再取模  定位到具体的表  
+答案2：https://tech.meituan.com/dianping_order_db_sharding.html?utm_source=tool.lu
